@@ -123,7 +123,10 @@ async function burnTokens(
 async function main() {
   const connection = new web3.Connection(web3.clusterApiUrl("devnet"))
   const user = await initializeKeypair(connection)
-  const receiver = web3.Keypair.generate().publicKey
+  // replace receiver pubKey with dev wallet address
+  // const receiver = web3.Keypair.generate().publicKey
+  const MY_ADDRESS = "4Ao1XPFTE7rnuyibnKqoNWQydFyXRub5sUUSYZFz4qPK"
+  const me = new web3.PublicKey(MY_ADDRESS)
 
   console.log("PublicKey:", user.publicKey.toBase58())
 
@@ -146,7 +149,7 @@ async function main() {
     connection,
     user,
     mint,
-    receiver
+    me
   )
 
   // Mint 100 tokens to our address
